@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#0f172a" />
-  <title>DuckTales (NES) — Kubo Touch</title>
+  <title>Disney's DuckTales (NES) — Kubo Touch</title>
   <style>
     * {
       box-sizing: border-box;
@@ -77,7 +77,7 @@
     .cover-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(9, 13, 22, 0.92);
+      background: rgba(9, 13, 22, 0.94);
       backdrop-filter: blur(8px);
       display: flex;
       flex-direction: column;
@@ -85,7 +85,7 @@
       justify-content: center;
       gap: 16px;
       padding: 20px;
-      z-index: 20;
+      z-index: 9999;
       transition: opacity 0.25s ease;
     }
 
@@ -95,7 +95,7 @@
     }
 
     .box-3d {
-      width: 145px;
+      width: 150px;
       aspect-ratio: 3 / 4;
       border-radius: 10px;
       overflow: hidden;
@@ -144,8 +144,7 @@
     <div class="stage">
       <div class="cover-overlay" id="coverOverlay">
         <div class="box-3d">
-          <!-- Substitua pela URL da capa hospedada no seu repositório -->
-          <img src="ducktales-nes.jpg" alt="Capa Disney's DuckTales NES" />
+          <img src="./Duck%20Tales%20NES.jpeg" alt="Capa Disney's DuckTales NES" />
         </div>
         <button class="start-btn" id="startBtn" type="button">Iniciar Jogo</button>
       </div>
@@ -156,8 +155,7 @@
   </div>
 
   <script>
-    // Altere para o caminho real da sua ROM .nes no repositório
-    const ROM_URL = "./roms/DuckTales (USA).nes";
+    const ROM_URL = "./DuckTales%20(USA).nes";
 
     window.EJS_player = "#game";
     window.EJS_core = "nes";

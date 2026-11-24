@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#0b2545" />
-  <title>Disney's DuckTales (NES) — Kubo Touch</title>
+  <title>OutRun (Sega Mega Drive) — Kubo Touch</title>
   <style>
     * {
       box-sizing: border-box;
@@ -205,14 +205,14 @@
 <body>
   <div class="container">
     <div class="header">
-      <div class="badge">Kubo Touch • NES</div>
-      <h1>Disney's DuckTales</h1>
+      <div class="badge">Kubo Touch • Sega Mega Drive</div>
+      <h1>OutRun</h1>
     </div>
 
     <div class="stage">
       <div class="cover-overlay" id="coverOverlay">
         <div class="box-3d">
-          <img src="./Duck%20Tales%20NES.jpeg" alt="Capa Disney's DuckTales NES" />
+          <img src="./out%20run%20mega%20drive.png" alt="Capa OutRun Sega Mega Drive" />
         </div>
         <button class="start-btn" id="startBtn" type="button">Iniciar Jogo</button>
       </div>
@@ -223,14 +223,14 @@
   </div>
 
   <script>
-    const ROM_URL = "./DuckTales%20(USA).nes";
+    const ROM_URL = "./OutRun%20(USA%2C%20Europe).gen";
 
     window.EJS_player = "#game";
-    window.EJS_core = "nes";
-    window.EJS_gameName = "DuckTales";
+    window.EJS_core = "segaMD";
+    window.EJS_gameName = "OutRun";
     window.EJS_gameUrl = ROM_URL;
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
-    window.EJS_startOnLoaded = false;
+    window.EJS_startOnLoaded = true;
     window.EJS_fullscreenOnLoaded = false;
 
     let started = false;

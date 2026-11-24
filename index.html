@@ -169,6 +169,7 @@
       box-shadow: 0 16px 34px rgba(0, 0, 0, 0.8), 0 0 22px rgba(250, 204, 21, 0.28);
       border: 2px solid rgba(250, 204, 21, 0.45);
       transform: perspective(700px) rotateY(-8deg);
+      background: rgba(7, 19, 38, 0.7);
     }
 
     .box-3d img {
@@ -212,7 +213,13 @@
     <div class="stage">
       <div class="cover-overlay" id="coverOverlay">
         <div class="box-3d">
-          <img src="./out%20run%20mega%20drive.png" alt="Capa OutRun Sega Mega Drive" />
+          <img
+            id="coverImg"
+            src="./outrun-cover.png"
+            data-fallback="./out%20run%20mega%20drive.png"
+            alt="Capa OutRun Sega Mega Drive"
+            onerror="if (!this.dataset.triedFallback && this.dataset.fallback) { this.dataset.triedFallback = '1'; this.src = this.dataset.fallback; } else { this.style.display = 'none'; }"
+          />
         </div>
         <button class="start-btn" id="startBtn" type="button">Iniciar Jogo</button>
       </div>

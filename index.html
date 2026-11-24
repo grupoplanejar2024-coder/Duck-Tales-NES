@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-PT">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -219,11 +219,11 @@
       <div id="game"></div>
     </div>
 
-    <p class="hint">No celular, os controles ficam na parte inferior; no PC, use as setas, Z / X ou Enter.</p>
+    <p class="hint">No telemóvel, os controlos ficam na parte inferior; no PC, use as setas, Z / X ou Enter.</p>
   </div>
 
   <script>
-    const ROM_URL = "./OutRun%20(USA%2C%20Europe).gen";
+    const ROM_URL = new URL("./OutRun (USA, Europe).gen", window.location.href).href;
 
     window.EJS_player = "#game";
     window.EJS_core = "segaMD";
@@ -232,6 +232,14 @@
     window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
     window.EJS_startOnLoaded = true;
     window.EJS_fullscreenOnLoaded = false;
+
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (const registration of registrations) {
+          registration.unregister();
+        }
+      });
+    }
 
     let started = false;
 
@@ -242,6 +250,7 @@
         started = true;
         const script = document.createElement("script");
         script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+        script.async = true;
         document.body.appendChild(script);
       } else if (window.EJS_emulator && typeof window.EJS_emulator.play === "function") {
         window.EJS_emulator.play();

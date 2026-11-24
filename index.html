@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>DuckTales (NES) — Kubo Touch</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1e293b 0%, #090d16 100%);
+      color: #f8fafc;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #facc15;
+      background: rgba(250, 204, 21, 0.12);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      font-size: 1.45rem;
+      font-weight: 800;
+    }
+
+    .stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      max-height: 70dvh;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65);
+    }
+
+    #game {
+      width: 100%;
+      height: 100%;
+    }
+
+    .cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(9, 13, 22, 0.92);
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 20px;
+      z-index: 20;
+      transition: opacity 0.25s ease;
+    }
+
+    .cover-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .box-3d {
+      width: 145px;
+      aspect-ratio: 3 / 4;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      transform: perspective(700px) rotateY(-8deg);
+    }
+
+    .box-3d img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .start-btn {
+      background: linear-gradient(135deg, #eab308, #f97316);
+      color: #090d16;
+      font-weight: 800;
+      font-size: 1rem;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(249, 115, 22, 0.35);
+    }
+
+    .start-btn:active {
+      transform: scale(0.97);
+    }
+
+    .hint {
+      font-size: 0.82rem;
+      color: #94a3b8;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="badge">Kubo Touch • NES</div>
+      <h1>Disney's DuckTales</h1>
+    </div>
+
+    <div class="stage">
+      <div class="cover-overlay" id="coverOverlay">
+        <div class="box-3d">
+          <!-- Substitua pela URL da capa hospedada no seu repositório -->
+          <img src="ducktales-nes.jpg" alt="Capa Disney's DuckTales NES" />
+        </div>
+        <button class="start-btn" id="startBtn" type="button">Iniciar Jogo</button>
+      </div>
+      <div id="game"></div>
+    </div>
+
+    <p class="hint">No celular, use os controles virtuais na tela. No PC, use as setas, Z / X ou Enter.</p>
+  </div>
+
+  <script>
+    // Altere para o caminho real da sua ROM .nes no repositório
+    const ROM_URL = "./roms/DuckTales (USA).nes";
+
+    window.EJS_player = "#game";
+    window.EJS_core = "nes";
+    window.EJS_gameName = "DuckTales";
+    window.EJS_gameUrl = ROM_URL;
+    window.EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+    window.EJS_startOnLoaded = false;
+    window.EJS_fullscreenOnLoaded = false;
+
+    let started = false;
+
+    document.getElementById("startBtn").addEventListener("click", () => {
+      document.getElementById("coverOverlay").classList.add("hidden");
+
+      if (!started) {
+        started = true;
+        const script = document.createElement("script");
+        script.src = "https://cdn.emulatorjs.org/stable/data/loader.js";
+        document.body.appendChild(script);
+      } else if (window.EJS_emulator && typeof window.EJS_emulator.play === "function") {
+        window.EJS_emulator.play();
+      }
+    });
+  </script>
+</body>
+</html>
